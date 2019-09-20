@@ -71,36 +71,42 @@ bool isPalindromeBestTimes2(const string &s) {
 
 static const string TEST_STR{"amanaplanacanalpanama"};
 
+// Helper function that prevents elision of the whole test during a release build
+void dont_elide_me(bool b) {
+  if (!b) exit(1);
+}
+
 static void BM_isPalindromeBad(benchmark::State& state) {
   for (auto _ : state)
-    isPalindromeBad(TEST_STR);
+    dont_elide_me(isPalindromeBad(TEST_STR));
 }
 // Register the function as a benchmark
 BENCHMARK(BM_isPalindromeBad);
 
 static void BM_isPalindromeBetter1(benchmark::State& state) {
   for (auto _ : state)
-    isPalindromeBetter1(TEST_STR);
+    dont_elide_me(isPalindromeBetter1(TEST_STR));
 }
 // Register the function as a benchmark
 BENCHMARK(BM_isPalindromeBetter1);
 
 static void BM_isPalindromeBetter2(benchmark::State& state) {
   for (auto _ : state)
-    isPalindromeBetter2(TEST_STR);
+    dont_elide_me(isPalindromeBetter2(TEST_STR));
 }
 // Register the function as a benchmark
-BENCHMARK(BM_isPalindromeBetter1);
+BENCHMARK(BM_isPalindromeBetter2);
+
 static void BM_isPalindromeBest(benchmark::State& state) {
   for (auto _ : state)
-    isPalindromeBest(TEST_STR);
+    dont_elide_me(isPalindromeBest(TEST_STR));
 }
 // Register the function as a benchmark
 BENCHMARK(BM_isPalindromeBest);
 
 static void BM_isPalindromeBestTimes2(benchmark::State& state) {
   for (auto _ : state)
-    isPalindromeBestTimes2(TEST_STR);
+    dont_elide_me(isPalindromeBestTimes2(TEST_STR));
 }
 // Register the function as a benchmark
 BENCHMARK(BM_isPalindromeBestTimes2);
@@ -108,23 +114,3 @@ BENCHMARK(BM_isPalindromeBestTimes2);
 
 BENCHMARK_MAIN();
 
-//int main() {
-//  // Our input palindrome
-//  string s1("rotor");
-//
-//  // Test each of our functions
-//  bool sol1 = isPalindromeBad(s1);
-//  bool sol2 = isPalindromeBetter1(s1);
-//  bool sol3 = isPalindromeBetter2(s1);
-//  bool sol4 = isPalindromeBest(s1);
-//  bool sol5 = isPalindromeBestTimes2(s1);
-//
-//  // Print the solution
-//  cout << sol1 << endl;
-//  cout << sol2 << endl;
-//  cout << sol3 << endl;
-//  cout << sol4 << endl;
-//  cout << sol5 << endl;
-//
-//  return 0;
-//}
