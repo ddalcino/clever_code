@@ -62,6 +62,11 @@ bool isPalindromeBest(const string &s) {
   return equal(begin(s), end(s), rbegin(s));
 }
 
+bool isPalindromeBestTimes2(const string &s) {
+  const auto num_necessary_compares = s.size() / 2;
+  return equal(begin(s), begin(s) + num_necessary_compares, rbegin(s));
+}
+
 int main() {
   // Our input palindrome
   string s1("rotor");
@@ -71,12 +76,14 @@ int main() {
   bool sol2 = isPalindromeBetter1(s1);
   bool sol3 = isPalindromeBetter2(s1);
   bool sol4 = isPalindromeBest(s1);
+  bool sol5 = isPalindromeBestTimes2(s1);
 
   // Print the solution
   cout << sol1 << endl;
   cout << sol2 << endl;
   cout << sol3 << endl;
   cout << sol4 << endl;
+  cout << sol5 << endl;
 
   return 0;
 }
