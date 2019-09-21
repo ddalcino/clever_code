@@ -7,12 +7,14 @@ find_package(GoogleBenchmark REQUIRED)
 
 
 include_directories(${benchmark_INCLUDE_DIRS})
-include_directories(headers)
 
-#file(GLOB_RECURSE SOURCE_FILES headers/*)
 
 add_executable(palindrome palindrome/palindrome.cpp)
-#add_executable(MicroBenchmark ${SOURCE_FILES})
+add_executable(find_odd find_odd/find_odd.cpp)
+
+target_link_libraries(find_odd
+        ${benchmark_LIBRARIES}
+        tbb pthread)
 
 target_link_libraries(palindrome ${benchmark_LIBRARIES} pthread)
 if ("${CMAKE_SYSTEM_NAME}" MATCHES "Windows")
